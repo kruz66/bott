@@ -1,8 +1,8 @@
 # List the start up tasks. Learn more: https://www.gitpod.io/docs/configure/workspaces/tasks
 tasks:
-  - name: Script Task
-    init: echo 'init script' # runs during prebuild => https://www.gitpod.io/docs/configure/projects/prebuilds
-    command: echo 'start script'
+  - name: Terminal one
+    init: sudo apt-get update -q && sudo apt-get upgrade && sudo apt install ncdu ffmpeg tmux # runs during prebuild => https://www.gitpod.io/docs/configure/projects/prebuilds
+    command: pip3 install ffmpeg-python telethon wget gevent requests validators
 
 # List the ports to expose. Learn more: https://www.gitpod.io/docs/configure/workspaces/ports
 ports:
