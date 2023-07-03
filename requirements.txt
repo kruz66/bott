@@ -1,0 +1,6 @@
+ffmpeg-python
+telethon
+wget
+gevent
+requests
+validators
