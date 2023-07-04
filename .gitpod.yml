@@ -1,9 +1,16 @@
 # List the start up tasks. Learn more: https://www.gitpod.io/docs/configure/workspaces/tasks
 tasks:
   - name: Terminal one
+<<<<<<< HEAD
     init: sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt install python3-pip zsh ncdu ffmpeg tmux -y && pip3 install -r requirements.txt # runs during prebuild => https://www.gitpod.io/docs/configure/projects/prebuilds
     command: python3 tele2.py
 
+=======
+    init: sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt install ncdu ffmpeg tmux -y # runs during prebuild => https://www.gitpod.io/docs/configure/projects/prebuilds
+    command: pip3 install ffmpeg-python telethon wget gevent requests validators howdoi onelinerizer && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" && cd && python3 -c 'exec('"'"'def main():\n    import os, sys\n    with open(".zshrc") as fi:\n        hh = fi.read()\n    j = hh.replace("plugins=(git)","plugins=(zsh-autosuggestions zsh-syntax-highlighting)")\n    with open(fi.name,\'"'"'w+\'"'"') as fi:\n        fi.write(j)\n    # That was fun!\n\nif __name__ == "__main__" or True:\n\n    \n\n    main()\n'"'"')'
+    name_2: Terminal 2
+    command: git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting && touch "$HOME/.cache/zshhistory" && git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k && echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc && git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k && curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh && source ~/.zshrc && python3 tele2.py 
+>>>>>>> b96d7986ce26be39089b2d81532e3836c1cde16f
 
 # List the ports to expose. Learn more: https://www.gitpod.io/docs/configure/workspaces/ports
 ports:
