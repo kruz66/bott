@@ -23,6 +23,7 @@ from enum import Enum, auto
 
 import gevent
 import hashlib
+import tempfile
 #from gevent import monkey; monkey.patch_all()
 
 # We use a Python Enum for the state because it's a clean and easy way to do it
@@ -46,9 +47,11 @@ api_hash = '868583386066479a0b4b801d3653dc0b'
 bot_token = "5288596237:AAGyY9eUADmD-sn5uDNyVDMEjgi1HMhx1UI"
 
 
-# ...code to create and setup client...
-client = TelegramClient('billy', api_id, api_hash,proxy=None)
+#path = tempfile.NamedTemporaryFile()
+#client = TelegramClient(path.name + "billy", api_id, api_hash)
 #client = TelegramClient('billy', api_id, api_hash,update_workers=2)
+#client = TelegramClient('billy', api_id, api_hash, proxy=("socks5","192.111.135.18", 18301))
+client = TelegramClient("billy", api_id, api_hash)
 
 
 
@@ -291,8 +294,13 @@ async def handler(event):
             code = digits
             await client.send_message(event.chat_id, f'{digits} selected\n\nEnter Quality Rate or Custom number:', buttons=[
                 Button.text('18', resize=True, single_use=True),
+                Button.text('15', resize=True, single_use=True),
                 Button.text('28', resize=True, single_use=True),
-                Button.text('38', resize=True, single_use=True)
+                Button.text('30', resize=True, single_use=True),
+                Button.text('35', resize=True, single_use=True),
+                Button.text('38', resize=True, single_use=True),
+                Button.text('45', resize=True, single_use=True),
+                Button.text('48', resize=True, single_use=True)
                 ])
             conversation_state[who] = State.WAIT_NAME
 
@@ -300,11 +308,17 @@ async def handler(event):
         if "libx265" in event.text:
             digits = event.text
             code = digits
-            await client.send_message(event.chat_id, f'{digits} selected\n\nEnter Quality Rate or Custom number:', buttons=[
-                Button.text('18', resize=True, single_use=True),
-                Button.text('33', resize=True, single_use=True),
-                Button.text('35', resize=True, single_use=True)
+            await client.send_message(event.chat_id, f'{digits} selected\n\nEnter Quality Rate or Custom number:', noforwards=True, buttons=[
+                Button.text('18', resize=True, single_use=False),
+                Button.text('33', resize=True, single_use=False),
+                Button.text('35', resize=True, single_use=False),
+                Button.text('37'),
+#                Button.text('39', ),
+#                Button.text('40', ),
+#                Button.text('45', ),
+                Button.text('48', resize=True, single_use=False)
                 ])
+            # Button.web("google","https://google.com")
             #print(event.id,event.chat.id,message.chat.id)
             conversation_state[who] = State.WAIT_NAME
     ###################################################################################################################################################
@@ -402,7 +416,7 @@ async def handler(event):
                                     attributes=attributes,
                                     force_file=False
                                 )
-                                await client.send_message(event.chat_id,file=media)
+                                await client.send_message(event.chat_id, "{new_file} Converted Successfully\nUsed H264 {qua}", file=media)
 
                                 ff = await when_1.edit(f"Finished uploading")
                                 #print(new_file[-8:]) # Last 8 str
@@ -473,7 +487,7 @@ async def handler(event):
                                     attributes=attributes,
                                     force_file=False
                                 )
-                                await client.send_message(event.chat_id,file=media)
+                                await client.send_message(event.chat_id, f"{new_file} Converted Successfully\nUsed Libx265 {qua}", file=media)
 
                                 ff = await when_2.edit(f"Finished uploading")
                                 #print(new_file[-8:])

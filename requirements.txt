@@ -1,6 +1,7 @@
-ffmpeg-python
-telethon
 wget
+howdoi
 gevent
+telethon
 requests
 validators
+ffmpeg-python
