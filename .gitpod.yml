@@ -2,7 +2,7 @@
 tasks:
   - name: Terminal one
     init: sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt install python3-pip zsh ncdu ffmpeg tmux -y && pip3 install -r requirements.txt # runs during prebuild => https://www.gitpod.io/docs/configure/projects/prebuilds
-    command: python3 tele2.py
+    command: python3 billy.py
 
 # List the ports to expose. Learn more: https://www.gitpod.io/docs/configure/workspaces/ports
 ports:
