@@ -12,7 +12,7 @@ api_id = 6800960
 api_hash = '868583386066479a0b4b801d3653dc0b'
 bot_token = "5288596237:AAGyY9eUADmD-sn5uDNyVDMEjgi1HMhx1UI"
 
-client = TelegramClient("bot", api_id, api_hash)
+client = TelegramClient("billy", api_id, api_hash)
 
 client.start(bot_token=bot_token)
 file_to_upload = "bunny.mp4"
@@ -35,10 +35,10 @@ async def download_or_upload(event):
     type_of = ""
     msg = None
     timer = Timer()
-
     async def progress_bar(current, total):
         if timer.can_send():
             await msg.edit("{} {}%".format(type_of, current * 100 / total))
+
 
     if event.document:
         type_of = "download"
